@@ -1,12 +1,17 @@
 import React from "react";
 import "./App.css";
-import Login from "@/pages/Login";
+import { Skeleton } from "antd";
+import { BrowserRouter, Route } from "react-router-dom";
+
+const Login = React.lazy(() => import("@/pages/Login"));
 
 function App() {
   return (
-    <div className="App">
-      <Login />
-    </div>
+    <React.Suspense fallback={<Skeleton />}>
+      <BrowserRouter>
+        <Route path="/" component={Login}></Route>
+      </BrowserRouter>
+    </React.Suspense>
   );
 }
 
